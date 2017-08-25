@@ -41,6 +41,8 @@ source 'https://rubygems.org'
 
  gem 'bootstrap-sass'
 
+ gem 'devise'
+
 group :development, :test do
    gem 'rspec-rails', '~> 3.0'
    gem 'rails-controller-testing'
