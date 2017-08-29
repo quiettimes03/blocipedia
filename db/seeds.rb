@@ -7,15 +7,30 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'random_data'
 
+5.times do
+  User.create!(
+  email: RandomData.random_email,
+  password: "helloworld"
+  )
+end
+users = User.all
+
 50.times do
  # #1
    Wiki.create!(
- # #2
+     user:   users.sample,
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph
    )
  end
  wikis = Wiki.all
 
+ user = User.first
+ user.update_attributes!(
+   email: 'rbain02@gmail.com', # replace this with your personal email
+   password: 'helloworld'
+ )
+
 puts "Seed finished"
 puts "#{Wiki.count} wikis created"
+puts "#{User.count} users created"
