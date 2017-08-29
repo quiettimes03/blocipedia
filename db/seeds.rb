@@ -7,20 +7,22 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'random_data'
 
+#Create Users
 5.times do
   User.create!(
-  email: RandomData.random_email,
+  email: Faker::Internet.email,
   password: "helloworld"
   )
 end
 users = User.all
 
+#Create Wikis
 50.times do
  # #1
    Wiki.create!(
      user:   users.sample,
-     title:  RandomData.random_sentence,
-     body:   RandomData.random_paragraph
+     title:  Faker::RickAndMorty.unique.quote,
+     body:   Faker::TheFreshPrinceOfBelAir.unique.quote
    )
  end
  wikis = Wiki.all

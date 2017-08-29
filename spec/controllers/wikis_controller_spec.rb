@@ -1,5 +1,5 @@
 require 'rails_helper'
-inlude 'RandomData'
+include 'RandomData'
 
 RSpec.describe WikisController, type: :controller do
   let(:my_wiki) {Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)}
