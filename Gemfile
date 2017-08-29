@@ -43,6 +43,8 @@ source 'https://rubygems.org'
 
  gem 'devise'
 
+ gem 'pundit'
+
 group :development, :test do
    gem 'rspec-rails', '~> 3.0'
    gem 'rails-controller-testing'
