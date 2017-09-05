@@ -1,0 +1,7 @@
+<%= form_tag charges_path do %>
+   <h4>Click the button!</h4>
+   <script class='stripe-button' src="https://checkout.stripe.com/checkout.js"
+     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+     data-amount="1500"
+     data-description="Premium Membership - #{current_user.email}" ></script>
+ <% end %>
