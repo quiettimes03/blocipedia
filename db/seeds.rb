@@ -22,7 +22,8 @@ users = User.all
    Wiki.create!(
      user:   users.sample,
      title:  Faker::RickAndMorty.unique.quote,
-     body:   Faker::TheFreshPrinceOfBelAir.unique.quote
+     body:   Faker::TheFreshPrinceOfBelAir.unique.quote,
+     private: false
    )
  end
  wikis = Wiki.all
