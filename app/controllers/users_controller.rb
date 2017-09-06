@@ -15,5 +15,6 @@ class UsersController < ApplicationController
     else
       flash[:error] = "There was an error downgrading your account. Try again."
       redirect_to root_path
+
   end
 end

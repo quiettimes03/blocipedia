@@ -24,7 +24,7 @@
 
 
           <% if current_user.role == 'premium' %>
-            <%= link_to 'Downgrade to Standard', edit_user_registration_path %> |
+            <%= link_to 'Premium User', edit_user_registration_path %> |
           <% else %>
             <%= link_to 'Upgrade to Premium', new_charge_path %> |
           <% end %>
