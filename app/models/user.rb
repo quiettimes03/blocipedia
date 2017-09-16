@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :wikis, dependent: :destroy
+  has_many :collaborators, through: :wikis
 
   enum role: [:standard, :admin, :premium]
 

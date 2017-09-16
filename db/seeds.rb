@@ -18,7 +18,6 @@ users = User.all
 
 #Create Wikis
 50.times do
- # #1
    Wiki.create!(
      user:   users.sample,
      title:  Faker::RickAndMorty.unique.quote,
@@ -27,6 +26,15 @@ users = User.all
    )
  end
  wikis = Wiki.all
+
+ #Create Collaborators
+ 100.times do
+   Collaborator.create!(
+   user: users.sample,
+   wiki: wikis.sample
+   )
+ end
+ collaborators = Collaborator.all
 
  user = User.first
  user.update_attributes!(
@@ -37,3 +45,4 @@ users = User.all
 puts "Seed finished"
 puts "#{Wiki.count} wikis created"
 puts "#{User.count} users created"
+puts "#{Collaborator.count} collaborators created"

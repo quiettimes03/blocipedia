@@ -1,7 +1,77 @@
-<% if current_user.admin? || current_user.premium? %>
-  <div class="form-group">
-    <%= f.label :private, class: 'checkbox' do %>
-      <%= f.check_box :private %> Private wiki
-    <% end %>
-  </div>
+<% if current_user.standard? %>
+     <div class="row">
+
+       <div class="col-md-4">
+         <p>Guidelines for wikis</p>
+         <ul>
+           <li>Make sure it rhymes.</li>
+           <li>Don't use the letter "A".</li>
+           <li>The incessant use of hashtags will get you banned.</li>
+         </ul>
+       </div>
+
+       <div class="col-md-8">
+         <%= form_for @wiki do |f| %>
+           <div class="form-group">
+             <%= f.label :title %>
+             <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+           </div>
+           <div class="form-group">
+             <%= f.label :body %>
+             <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+           </div>
+           <div class="form-group">
+             <% if current_user.admin? || current_user.premium? %>
+               <div class="form-group">
+                 <%= f.label :private, class: 'checkbox' do %>
+                   <%= f.check_box :private %> Private wiki
+                 <% end %>
+               </div>
+             <% end %>
+           </div>
+           <%= f.submit "Save", class: 'btn btn-success' %>
+         <% end %>
+       </div>
+
+<% elsif current_user.premium? || current_user.admin? %>
+    <div class="row">
+      <div class="col-md-3">
+        <p>Guidelines for wikis</p>
+        <ul>
+          <li>Make sure it rhymes.</li>
+          <li>Don't use the letter "A".</li>
+          <li>The incessant use of hashtags will get you banned.</li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <%= form_for @wiki do |f| %>
+          <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :body %>
+            <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+          </div>
+          <div class="form-group">
+              <div class="form-group">
+                <%= f.label :private, class: 'checkbox' do %>
+                  <%= f.check_box :private %> Private wiki
+              </div>
+            <% end %>
+          </div>
+          <%= f.submit "Save", class: 'btn btn-success' %>
+        <% end %>
+      </div>
+
+     <div class="col-md-3">
+       <%= render partial: 'collaborators/users' %>
+           <% if @wiki.user_id == current_user.id%>
+                <%= link_to "Add a Collaborator", new_collaborator_path(@wiki, user_id: @user_id), class: 'btn btn-success' %>
+            <% else %>
+                <%= link_to "Remove a Collaborator", collaborator(@wiki, @wiki.collaborators.find_by_user_id(user.id).id), method: :destroy, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to remove this collaborator?'} %>
+            <% end %>
+     </div>
+     </div>
 <% end %>

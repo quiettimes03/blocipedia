@@ -1,0 +1,9 @@
+<h3> Here, you shall add a new collaborator to your Wiki! </h3>
+
+
+<%= form_for [@wiki, @collaborator] do |f| %>
+    <div class="form-group">
+        <%= f.text_field :user, class: 'form-control', placeholder: "Enter a collaborator's email" %>
+    </div>
+    <%= f.submit "Submit Collaborator", class: 'btn btn-default pull-right' %>
+<%end%>

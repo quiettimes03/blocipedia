@@ -1,6 +1,7 @@
 class Wiki < ApplicationRecord
   belongs_to :user, optional: true
-  has_many :users, dependent: :destroy
+  has_many :users, through: :collaborators, dependent: :destroy
+  has_many :collaborators, dependent: :destroy
 
   after_initialize :initialize_role
 
